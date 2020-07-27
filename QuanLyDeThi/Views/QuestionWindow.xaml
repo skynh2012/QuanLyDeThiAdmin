@@ -1,0 +1,108 @@
+﻿<Window x:Class="QuanLyDeThi.Views.QuestionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuanLyDeThi.Views"
+        xmlns:uc="clr-namespace:QuanLyDeThi.Views"
+        mc:Ignorable="d"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+         TextElement.FontWeight="Regular"
+         TextElement.FontSize="15"
+         TextOptions.TextFormattingMode="Ideal"
+         TextOptions.TextRenderingMode="Auto"
+         Background="{DynamicResource MaterialDesignPaper}"
+         FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStartupLocation="CenterOwner"
+        DataContext="{StaticResource QuestionVM}"
+        ResizeMode="NoResize"
+        Title="Đề thi" Height="540" Width="960">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="45"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+        </Grid.RowDefinitions>
+        <uc:HeaderUC Grid.Row="0"></uc:HeaderUC>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="240"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock  Grid.Column="0" FontSize="20" VerticalAlignment="Center">Tên Đề thi :</TextBlock>
+                    <Border BorderBrush="#660000" BorderThickness="1" CornerRadius="3" Padding="1" Grid.Column="1" Background="#E8E8E8" Width="600"  Margin="8 3 0 3" HorizontalAlignment="Left">
+                        <TextBox Text="{Binding Title}" Width="600" Padding="5 0 0 0" SelectionBrush="Black" BorderBrush="#00000000" CaretBrush="#FF6C6C6C" materialDesign:HintAssist.Hint=""  materialDesign:TextFieldAssist.DecorationVisibility="Visible" HorizontalAlignment="Left" VerticalAlignment="Center"  BorderThickness="1"  Background="Transparent" />
+                    </Border>
+
+                </Grid>
+                <Grid Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="240"></ColumnDefinition>
+                        <ColumnDefinition Width="64*"></ColumnDefinition>
+                        <ColumnDefinition Width="293*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock  Grid.Column="0" FontSize="20" VerticalAlignment="Center" Margin="0,7">Thiết lập thời gian :</TextBlock>
+                    <Border BorderBrush="#660000" BorderThickness="1" CornerRadius="3" Padding="1" Grid.Column="1" Background="#E8E8E8" Width="600"  Margin="8 3 0 3" HorizontalAlignment="Left" Grid.ColumnSpan="2">
+                        <TextBox  PreviewTextInput="TextBox_PreviewTextInput"  Text="{Binding AnswerTime}" Width="600" Padding="5 0 0 0" SelectionBrush="Black" BorderBrush="#00000000" CaretBrush="#FF6C6C6C" materialDesign:HintAssist.Hint=""  materialDesign:TextFieldAssist.DecorationVisibility="Visible" HorizontalAlignment="Left" VerticalAlignment="Center"  BorderThickness="1"  Background="Transparent" />
+                    </Border>
+                </Grid>
+            </Grid>
+            <materialDesign:ColorZone
+  Mode="PrimaryMid"
+   Grid.Row="1" Margin="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <WrapPanel VerticalAlignment="Center">
+                    <materialDesign:ColorZone Mode="Standard" CornerRadius="2" Padding="8 3 8 3"  Margin="16 0 20 0" Panel.ZIndex="1" materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition ></ColumnDefinition>
+                                <ColumnDefinition ></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Style="{DynamicResource MaterialDesignToolButton}">
+                                <materialDesign:PackIcon Kind="Magnify" Opacity=".56" />
+                            </Button>
+                            <TextBox Grid.Column="1" Margin="8 0 0 0" Text="{Binding Search,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Tìm kiếm" materialDesign:TextFieldAssist.DecorationVisibility="Hidden" VerticalAlignment="Center"  BorderThickness="0" MinWidth="440" />
+                        </Grid>
+                    </materialDesign:ColorZone>
+
+                    <Button Command="{Binding AddCommand}" Content="Thêm Câu Hỏi" Padding="5" Margin="10 0 10 0" Width="110" Background="DarkCyan"></Button>
+                    <Button Command="{Binding EditCommand}" Content="Sửa" Padding="5" Margin="10 0 10 0" Width="110" Background="DarkViolet"></Button>
+                    <Button Command="{Binding DeleteCommand}" Content="Xóa" Padding="5" Margin="10 0 5 0" Width="110" Background="DarkGray"></Button>
+                </WrapPanel>
+            </materialDesign:ColorZone>
+            <materialDesign:Card Grid.Row="2" Margin="2" VerticalAlignment="Stretch">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden">
+                    <ListView
+                         ItemsSource="{Binding LstQuestion}" SelectedItem="{Binding SelectedItem}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="150" DisplayMemberBinding="{Binding Id}" Header="ID" />
+                                <GridViewColumn Width="400"  DisplayMemberBinding="{Binding QuestionTitle}" Header="Câu hỏi" />
+                                <GridViewColumn Width="150" DisplayMemberBinding="{Binding User.DisplayName}" Header="Người tạo" />
+                                <GridViewColumn Width="120" DisplayMemberBinding="{Binding CreateDate, StringFormat='dd/MM/yyyy'}" Header="Ngày tạo" />
+                                <GridViewColumn Width="120" DisplayMemberBinding="{Binding ModifyDate, StringFormat='dd/MM/yyyy'}" Header="Ngày Sửa" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </ScrollViewer>
+            </materialDesign:Card>
+        </Grid>
+        <Grid Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Style="{StaticResource MaterialDesignRaisedAccentButton}"  Width="160" ToolTip="Hoàn Thành" Content="Hoàn Thành" Command="{Binding CompleteCommand}" FontSize="18" FontWeight="Bold" Foreground="BlueViolet">
+            </Button>
+        </Grid>
+        <uc:FooterUC Grid.Row="3"></uc:FooterUC>
+    </Grid>
+</Window>

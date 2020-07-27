@@ -1,0 +1,77 @@
+﻿<Window x:Class="QuanLyDeThi.Views.LessonWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuanLyDeThi.Views"
+        mc:Ignorable="d"
+        xmlns:uc="clr-namespace:QuanLyDeThi.Views"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+         TextElement.FontWeight="Regular"
+         TextElement.FontSize="15"
+         TextOptions.TextFormattingMode="Ideal"
+         TextOptions.TextRenderingMode="Auto"
+         Background="{DynamicResource MaterialDesignPaper}"
+         FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStartupLocation="CenterOwner"
+        DataContext="{StaticResource LessonVM}"
+        ResizeMode="NoResize"
+        Title="Đề thi" Height="540" Width="960">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+        </Grid.RowDefinitions>
+        <uc:HeaderUC Grid.Row="0"></uc:HeaderUC>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Foreground="Blue" FontStyle="Normal">Quản Lý Đề Thi</TextBlock>
+            <materialDesign:ColorZone
+  Mode="PrimaryMid"
+   Grid.Row="1" Margin="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <WrapPanel VerticalAlignment="Center">
+                    <materialDesign:ColorZone Mode="Standard" CornerRadius="2" Padding="8 3 8 3"  Margin="16 0 20 0" Panel.ZIndex="1" materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition ></ColumnDefinition>
+                                <ColumnDefinition ></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Style="{DynamicResource MaterialDesignToolButton}">
+                                <materialDesign:PackIcon Kind="Magnify" Opacity=".56" />
+                            </Button>
+                            <TextBox Grid.Column="1" Margin="8 0 0 0" materialDesign:HintAssist.Hint="Tìm kiếm" materialDesign:TextFieldAssist.DecorationVisibility="Hidden" VerticalAlignment="Center"  BorderThickness="0" MinWidth="440" />
+                        </Grid>
+                    </materialDesign:ColorZone>
+
+                    <Button Command="{Binding AddCommand}" Content="Thêm Đề Thi" Padding="5" Margin="10 0 10 0" Width="110" Background="DarkCyan"></Button>
+                    <Button Command="{Binding EditCommand}" Content="Sửa" Padding="5" Margin="10 0 10 0" Width="110" Background="DarkViolet"></Button>
+                    <Button Command="{Binding DeleteCommand}" Content="Xóa" Padding="5" Margin="10 0 5 0" Width="110" Background="DarkGray"></Button>
+                </WrapPanel>
+            </materialDesign:ColorZone>
+            <materialDesign:Card Grid.Row="2" Margin="2" VerticalAlignment="Stretch">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden">
+                    <ListView
+                         ItemsSource="{Binding LstLesson}" SelectedItem="{Binding SelectedItem}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="150" DisplayMemberBinding="{Binding Id}" Header="ID" />
+                                <GridViewColumn Width="400"  DisplayMemberBinding="{Binding LessonName}" Header="Nội dung" />
+                                <GridViewColumn Width="150" DisplayMemberBinding="{Binding User.DisplayName}" Header="Người tạo" />
+                                <GridViewColumn Width="120" DisplayMemberBinding="{Binding CreateDate, StringFormat='dd/MM/yyyy'}" Header="Ngày tạo" />
+                                <GridViewColumn Width="120" DisplayMemberBinding="{Binding ModifyDate, StringFormat='dd/MM/yyyy'}" Header="Ngày Sửa" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </ScrollViewer>
+            </materialDesign:Card>
+        </Grid>
+        <uc:FooterUC Grid.Row="2"></uc:FooterUC>
+    </Grid>
+</Window>
+

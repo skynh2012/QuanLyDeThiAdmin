@@ -1,0 +1,26 @@
+﻿<Application x:Class="QuanLyDeThi.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:QuanLyDeThi"
+             xmlns:model="clr-namespace:QuanLyDeThi.Models"
+             xmlns:viewmodel ="clr-namespace:QuanLyDeThi.ViewModels"
+             xmlns:clr="clr-namespace:System;assembly=mscorlib"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <clr:String x:Key="SchoolName">Trường THPT C Kim Bảng</clr:String>
+            <clr:String x:Key="CopyRight">Bản quyền : Vũ Thành Long, Trường THPT C Kim Bảng </clr:String>
+            <clr:String x:Key="Version">Phiên bản 1.0</clr:String>
+            <BitmapImage x:Key="logo" UriSource="/Resources/logo.png" />
+            <viewmodel:QuestionViewModel x:Key="QuestionVM"></viewmodel:QuestionViewModel>
+            <viewmodel:QuestionCommandViewModel x:Key="DeThiCommandVM"></viewmodel:QuestionCommandViewModel>
+            <viewmodel:LessonViewModel x:Key="LessonVM"></viewmodel:LessonViewModel>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

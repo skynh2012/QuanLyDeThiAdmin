@@ -1,0 +1,79 @@
+﻿<Window x:Class="QuanLyDeThi.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuanLyDeThi"
+        xmlns:uc="clr-namespace:QuanLyDeThi.Views"
+        mc:Ignorable="d"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+         TextElement.FontWeight="Regular"
+         TextElement.FontSize="13"
+         TextOptions.TextFormattingMode="Ideal"
+         TextOptions.TextRenderingMode="Auto"
+         Background="{DynamicResource MaterialDesignPaper}"
+         FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="MainWindow" Height="540" Width="960">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition ></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+        </Grid.RowDefinitions>
+        <uc:HeaderUC Grid.Row="0"></uc:HeaderUC>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <materialDesign:Card
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                    Grid.Column="0"
+                    
+                    >
+                    <Button HorizontalAlignment="Center" 
+                            VerticalAlignment="Center"
+                            Click="OnExamClicked"
+                             Width="200"
+                             Height="80"
+                            Content="Quản lý đề thi"
+                            FontSize="18"
+                            ></Button>
+                </materialDesign:Card>
+                <materialDesign:Card
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                    Grid.Column="1"
+                    >
+                    <Button HorizontalAlignment="Center" 
+                            VerticalAlignment="Center"
+                            Click="OnResultClicked"
+                             Width="200"
+                             Height="80"
+                            Content="Quản lý kết quả thi"
+                            FontSize="18"
+                            ></Button>
+                </materialDesign:Card>
+            </Grid>
+            <Button Grid.Row="1"
+                    Width="120"
+                    Height="40"
+                    Background="Red"
+                    Content="Đăng xuất"
+                    Click="OnLogoutClicked"
+                >
+                
+            </Button>
+        </Grid>
+        <uc:FooterUC Grid.Row="2"></uc:FooterUC>
+    </Grid>
+</Window>
